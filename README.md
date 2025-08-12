@@ -20,3 +20,10 @@ Run this script from your terminal (Command Prompt or PowerShell on Windows) wit
 
 # Force transcription language (if Whisper is unsure)
 - python subtitle.py "input_video.mp4" --language en
+
+## Installation
+
+1. Clone the repository:
+```bash
+git clone https://github.com/yourusername/Subtitle-Translator.git
+cd Subtitle-Translator
