@@ -22,14 +22,6 @@ This enables **seamless multilingual communication and accessibility** for lectu
 
 ---
 
-## Installation  
-
-1. Clone this repository:
-   ```bash
-   git clone https://github.com/your-username/Powered-Speech-Annotation-System.git
-   cd Powered-Speech-Annotation-System
-
-
 # Basic usage [English to Hindi]
 - python subtitle.py input_video.mp4 --target_lang hi
 
@@ -42,6 +34,8 @@ This enables **seamless multilingual communication and accessibility** for lectu
 # Force transcription language [if Whisper is unsure]
 - python subtitle.py input_video.mp4 --language fr
 
+---
+
 # Output Files
 - For each target language (<lang> = NLLB code, e.g., hin_Deva):
 - <base>_eng_Latn_original.srt → Whisper English subtitles
@@ -49,11 +43,15 @@ This enables **seamless multilingual communication and accessibility** for lectu
 - <base>_<lang>_subs.mp4 → Video with subtitles only
 - <base>_<lang>_tts.mp4 → Final dubbed video with target audio
 
+---
+
 # Supported Languages
 
 - Whisper auto-detects 90+ input languages
 - NLLB supports 150+ target languages
 - MMS provides TTS voices for 150+ of languages
+
+---
 
 # Note 
 
