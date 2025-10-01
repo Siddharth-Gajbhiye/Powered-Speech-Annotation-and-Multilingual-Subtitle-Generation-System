@@ -22,7 +22,7 @@ This enables **seamless multilingual communication and accessibility** for lectu
 
 ---
 
-## ⚡ Installation  
+## Installation  
 
 1. Clone this repository:
    ```bash
