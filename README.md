@@ -1,5 +1,5 @@
 # Powered-Speech-Annotation-and-Multilingual-Subtitle-Generation-System
-# 🎤 Powered Speech Annotation & Multilingual Subtitle + Dubbing System  
+# Powered Speech Annotation & Multilingual Subtitle + Dubbing System  
 
 An **AI-powered end-to-end system** that:  
 - Transcribes speech from video/audio using **OpenAI Whisper**  
