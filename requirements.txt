@@ -6,8 +6,8 @@ sacremoses
 ttsmms
 edge-tts
 pydub
-pysoundfile   
-ffmpeg-python 
+pysoundfile
+ffmpeg-python
 pysubs2
 srt
 tqdm
@@ -15,4 +15,11 @@ inflect
 regex
 spacy
 numpy
-ffmpeg        
+ffmpeg
+deepmultilingualpunctuation
+nltk
+librosa
+soundfile
+scipy
+safetensors
+accelerate
