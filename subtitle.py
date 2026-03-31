@@ -2322,41 +2322,6 @@ def split_segments_on_sentence_end(segments, lang_nllb="eng_Latn"):
     print(f"[SENTENCE SPLIT] {len(segments)} → {len(new_segments)} (colon-aware, {lang_nllb})")
     return new_segments
 
-def correct_early_whisper_segments(segments, audio_path, max_delay_s=1.0, silence_thresh_offset=-35):
-    """
-    Detects when Whisper subtitles start too early and shifts them to the actual speech onset.
-    """
-    from pydub import AudioSegment, silence
-    import numpy as np
-
-    audio = AudioSegment.from_file(audio_path)
-    silence_thresh = audio.dBFS + silence_thresh_offset
-
-    # detect non-silent regions
-    nonsilent = silence.detect_nonsilent(audio, silence_thresh=silence_thresh, min_silence_len=150)
-    nonsilent = [(s/1000, e/1000) for s, e in nonsilent]
-
-    def nearest_active_start(t):
-        for s, e in nonsilent:
-            if t < s:
-                return s
-            if s <= t <= e:
-                return t
-        return t
-
-    corrected = []
-    for seg in segments:
-        s, e = seg["start"], seg["end"]
-        new_start = nearest_active_start(s)
-        if 0 < (new_start - s) < max_delay_s:
-            seg["start"] = new_start
-        if seg["end"] <= seg["start"]:
-            seg["end"] = seg["start"] + 0.1
-        corrected.append(seg)
-
-    print(f"[FIX] Early Whisper timing corrected (shifted up to {max_delay_s}s)")
-    return corrected
-
 def main():
     parser = argparse.ArgumentParser(
         description="Whisper → NLLB → MMS TTS → Burn-in (punctuation-preserving Whisper SRT)"
@@ -2418,8 +2383,7 @@ def main():
         except Exception as e:
             print(f"[WARN] Punctuation restoration failed ({e}), keeping Whisper's raw output.")
 
-        for seg in segments:
-            segments = sentence_case_contextual(segments)
+        segments = sentence_case_contextual(segments)
         # Save Whisper SRT
         out_srt_original = f"{base}_{src_lang_nllb}_whisper.srt"
         with open(out_srt_original, "w", encoding="utf-8") as f:
